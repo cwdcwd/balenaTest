@@ -1,6 +1,8 @@
 const { join } = require('path')
 const express = require('express')
 const favicon = require('serve-favicon')
+const { blinkLED } = require('./blinker')
+
 const app = express()
 const PORT = 80
 
@@ -21,4 +23,10 @@ app.get('/', function (req, res) {
 // start a server on port 80 and log its start to our console
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`)
+  try {
+    var blinkInterval = setInterval(blinkLED, 250)
+  } catch (error) {
+    console.log(error)
+  }
+  
 })

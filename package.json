@@ -25,7 +25,7 @@
   "homepage": "https://github.com/balena-io-projects/simple-server-node#readme",
   "dependencies": {
     "express": "~4.17.1",
-    "onoff": "^6.0.3",
+    "pi-pins": "^1.0.2",
     "serve-favicon": "~2.5.0"
   }
 }

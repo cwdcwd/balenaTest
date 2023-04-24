@@ -2,7 +2,7 @@ const gpiop = require('rpi-gpio').promise
 
 const LED_PIN = 7
 let LED = false
-const LEDOn = false
+let LEDOn = false
 
 async function blinkLED() { //function to start blinking
   if (!LED) {

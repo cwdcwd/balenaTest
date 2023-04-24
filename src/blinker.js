@@ -1,6 +1,6 @@
 const gpiop = require('rpi-gpio').promise
 
-const LED_PIN = 4
+const LED_PIN = 7
 let LED = false
 const LEDOn = false
 

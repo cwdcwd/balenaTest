@@ -2,6 +2,7 @@ version: "2"
 
 services:
   balena-hello-world:
+    privileged: true
     build: .
     ports:
       - "80:80"

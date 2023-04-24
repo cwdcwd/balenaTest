@@ -21,7 +21,7 @@ app.get('/', function (req, res) {
 })
 
 // start a server on port 80 and log its start to our console
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
   console.log(`Example app listening on port ${PORT}`)
   try {
     var blinkInterval = setInterval(blinkLED, 250)

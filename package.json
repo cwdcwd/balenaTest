@@ -24,8 +24,9 @@
   },
   "homepage": "https://github.com/balena-io-projects/simple-server-node#readme",
   "dependencies": {
+    "@types/rpi-gpio": "^2.1.1",
     "express": "~4.17.1",
-    "pi-pins": "^1.0.2",
+    "rpi-gpio": "^2.1.7",
     "serve-favicon": "~2.5.0"
   }
 }

@@ -1,21 +1,24 @@
-const pins = require("pi-pins")
-const LED = pins.connect(4) //use GPIO pin 4, and specify that it is output
+const gpiop = require('rpi-gpio').promise
 
-LED.mode("out") //set pin to output
+const LED_PIN = 4
+let LED = false
+const LEDOn = false
 
-// var blinkInterval = setInterval(blinkLED, 250) //run the blinkLED function every 250ms
+async function blinkLED() { //function to start blinking
+  if (!LED) {
+    LED = await gpiop.setup(LED_PIN, gpiop.DIR_OUT)
+  }
 
-function blinkLED() { //function to start blinking
-  if (LED.value()) { //check the pin state, if the state is 0 (or off)
-    LED.value(true) //set pin state to 1 (turn LED on)
+  if (LEDOn) { 
+    return await gpiop.write(LED_PIN, false)
   } else {
-    LED.value(false) //set pin state to 0 (turn LED off)
+    return await gpiop.write(LED_PIN, true)
   }
 }
 
-function endBlink() { //function to stop blinking
+async function endBlink() { //function to stop blinking
   clearInterval(blinkInterval) // Stop blink intervals
-  LED.value(false) // Turn LED off
+  return await gpiop.write(LED_PIN, false)
 }
 
 // setTimeout(endBlink, 5000) //stop blinking after 5 seconds

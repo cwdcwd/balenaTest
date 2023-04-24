@@ -10,10 +10,13 @@ async function blinkLED() { //function to start blinking
   }
 
   if (LEDOn) { 
-    return await gpiop.write(LED_PIN, false)
+    await gpiop.write(LED_PIN, false)
   } else {
-    return await gpiop.write(LED_PIN, true)
+    await gpiop.write(LED_PIN, true)
   }
+
+  LEDOn = !LEDOn
+  return LEDOn
 }
 
 async function endBlink() { //function to stop blinking

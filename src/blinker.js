@@ -2,21 +2,21 @@ const gpiop = require('rpi-gpio').promise
 
 const LED_PIN = 7
 let LED = false
-let LEDOn = false
+let LEDState = false
 
 async function blinkLED() { //function to start blinking
   if (!LED) {
     LED = await gpiop.setup(LED_PIN, gpiop.DIR_OUT)
   }
 
-  if (LEDOn) { 
+  if (LEDState) { 
     await gpiop.write(LED_PIN, false)
   } else {
     await gpiop.write(LED_PIN, true)
   }
 
-  LEDOn = !LEDOn
-  return LEDOn
+  LEDState = !LEDState
+  return LEDState
 }
 
 async function endBlink() { //function to stop blinking
@@ -24,6 +24,15 @@ async function endBlink() { //function to stop blinking
   return await gpiop.write(LED_PIN, false)
 }
 
+function getState() {
+  return LEDState
+}
+
+async function setState(state) {
+  LEDState = state
+  return await gpiop.write(LED_PIN, state)
+}
+
 // setTimeout(endBlink, 5000) //stop blinking after 5 seconds
 
-module.exports = { blinkLED, endBlink }
+module.exports = { blinkLED, endBlink, getState, setState }

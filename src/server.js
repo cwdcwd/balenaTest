@@ -1,7 +1,8 @@
 const { join } = require('path')
 const express = require('express')
 const favicon = require('serve-favicon')
-const { blinkLED } = require('./blinker')
+// const { blinkLED } = require('./blinker')
+const router = require('./routes/gpio')
 
 const app = express()
 const PORT = 80
@@ -20,13 +21,15 @@ app.get('/', function (req, res) {
   res.sendFile(join(__dirname, '..', 'views', 'index.html'))
 })
 
+app.use(router)
+
 // start a server on port 80 and log its start to our console
 app.listen(PORT, async () => {
   console.log(`Example app listening on port ${PORT}`)
-  try {
-    var blinkInterval = setInterval(blinkLED, 250)
-  } catch (error) {
-    console.log(error)
-  }
+  // try {
+  //   var blinkInterval = setInterval(blinkLED, 250)
+  // } catch (error) {
+  //   console.log(error)
+  // }
   
 })

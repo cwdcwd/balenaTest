@@ -11,6 +11,17 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" media="screen" href="public/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="public/main.css" />
+    <script>
+      function reqListener() {
+          console.log(this.responseText)
+        }
+
+        const req = new XMLHttpRequest()
+        req.addEventListener("load", reqListener)
+        req.open("GET", "http://www.example.org/example.txt")
+        req.send();
+
+    </script>
   </head>
   <body>
     <div>

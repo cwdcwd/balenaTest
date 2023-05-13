@@ -1,5 +1,5 @@
 const { Router} = require('express')
-const { getState, putState } = require('../blinker')
+const { getState, setState } = require('../blinker')
 
 const router = Router()
 
@@ -9,13 +9,14 @@ router.get('/api/led', async (req, res) => {
 })
 
 router.put('/api/led', async (req, res) => {
-  if (req.body.led === 'on') {
-    putState(true)
-  } else if (req.body.led === 'off') {
-    putState(false)
+  console.log(req.body)
+  if (req.body?.state === 'on') {
+    await setState(true)
+  } else if (req.body?.state === 'off') {
+    await setState(false)
   }
 
-  res.json({ led: getState() ? 'on' : 'off' })
+  res.json({ state: getState() ? 'on' : 'off' })
 })
 
 module.exports = router

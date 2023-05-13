@@ -1,5 +1,6 @@
 const { join } = require('path')
 const express = require('express')
+const bodyParser = require('body-parser');
 const favicon = require('serve-favicon')
 // const { blinkLED } = require('./blinker')
 const router = require('./routes/gpio')
@@ -7,6 +8,8 @@ const router = require('./routes/gpio')
 const app = express()
 const PORT = 80
 
+app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.json())
 app.use(favicon(join(__dirname, '..', 'views', 'public', 'favicon.ico')))
 app.set('views', join(__dirname, '..', 'views', 'public'))
 app.set('view engine', 'html')
